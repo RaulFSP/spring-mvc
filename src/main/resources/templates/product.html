@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Product</title>
+<style>
+table, th, td {
+	border: 1px solid black;
+	border-collapse: 1px solid black;
+}
+</style>
+</head>
+<body>
+	<section style="display: flex; flex-direction: column; gap: 10px;">
+		<form th:action="@{/product}" method="post" th:object="${product}">
+			<div class="inputBox">
+				<label>Name:</label><input type="text" th:field="*{name}" required>
+			</div>
+			<div class="inputBox">
+				<label>Category:</label><input type="text" th:field="*{category}"
+					required>
+			</div>
+			<div class="inputBox">
+				<label>Price:</label><input type="number" th:field="*{price}"
+					step="0.01">
+			</div>
+			<button type="submit">Confirm</button>
+			<button type="reset">Clear</button>
+		</form>
+	</section>
+
+	<section>
+		<table>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>version</th>
+					<th>created</th>
+					<th>name</th>
+					<th>category</th>
+					<th>price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="prod : ${products}">
+					<td th:text="${prod.id}"></td>
+					<td th:text="${prod.version}"></td>
+					<td th:text="${prod.creationDate}"></td>
+					<td th:text="${prod.name}"></td>
+					<td th:text="${prod.category}"></td>
+					<td th:text="${prod.price}"></td>
+					<!--
+					 fazer as rotas de update e delete
+					 
+					 -->
+					<td><a th:href="@{/product/id(id=${prod.id})}"><ion-icon
+								name="pencil-sharp"></ion-icon></a></td>
+					<td>
+							<ion-icon name="trash-bin-outline"></ion-icon>
+						</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	<script type="module"
+		src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule
+		src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	<script type="text/javascript">
+	function clicou(){
+		const res =confirm("Deseja deletar")
+		if(res){
+			
+		}
+	}
+	</script>
+	
+</body>
+</html>
